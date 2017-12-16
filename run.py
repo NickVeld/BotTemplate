@@ -17,12 +17,12 @@ try:
     f.close()
 except FileNotFoundError:
     print("There're no storages.")
-    offset = 163111506
+    offset = 0  # The first message id that the bot is going to get
 except ValueError:
-    offset = 163111506
+    offset = 0
 except Exception as ex:
     print(type(ex), ex.__str__())
-    offset = 163111506
+    offset = 0
 
 tapi.offset = offset
 workers_list = WorkersList.get_workers(WorkersList, cfg["included_workers"], tapi)

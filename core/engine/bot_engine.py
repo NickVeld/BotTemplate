@@ -30,7 +30,7 @@ class BotCycle:
                                 if cmd != 1:
                                     break
                     except UnicodeEncodeError:
-                        print(self.tapi.send("Мне не нравится Ваш язык!", tmsg.chat_id))
+                        print(self.tapi.send("I do not like this language!", tmsg.chat_id))
                 if not is_running:
                     break
         except Exception as ex:

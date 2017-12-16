@@ -20,15 +20,6 @@ class API:
 
         self.workers_list = None
 
-    # def __init__(self, data):
-    #     self.telegram = Tg_api(data["api_key"])
-    #     self.translator = Translator(data["dict_key"], data["tr_key"])
-    #
-    #     self.admin_ids = data["admin_ids"]
-    #     self.DB_IS_ENABLED = data["db_is_enabled"]
-    #     self.NO_CARDS_GROUPS = not data["cards_groups"]
-    #     self.db = MongoClient(data["mongo_name"], data["mongo_port"])["e_card"] if self.DB_IS_ENABLED else None
-
     def get_from_config(self, cfg):
         self.admin_ids = list(cfg['admins_ids'])
 
@@ -83,9 +74,6 @@ class Tg_api:
 
     def __init__(self):
         pass
-
-    # def __init__(self, api_key):
-    #     self.API_KEY = api_key
 
     def get_from_config(self, cfg):
         self.CHAT_LINK = cfg['telegram_chatlink']

@@ -1,8 +1,7 @@
 import sys
 import datetime
-# from multiprocessing import Process
-from core.engine.autoquit import autoquit_run
-# from core.engine.reminder import reminder_run
+# If you complete the module, you can uncomment this import
+# from core.engine.autoquit import autoquit_run
 
 
 class WorkersList(type):

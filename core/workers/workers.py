@@ -76,36 +76,10 @@ class Stop(BaseWorker):
         pass
 
 
-class Humanity(BaseWorker):
-    HELP = "Поддерживается понимание некоторых человеческих фраз, список команд можно посмотреть," \
-           "введя слово \"команды\"\n\n"
-
-    def __init__(self, teleapi):
-        super(Humanity, self).__init__(teleapi)
-        self.waitlist = set()
-        import re
-        self.re = re
-
-    def is_it_for_me(self, tmsg):
-        return not (tmsg.is_inline)
-
-    def run(self, tmsg):
-        tmsg.text_change_to(tmsg.text.lower())
-        #TODO: Add your own commands
-        if self.re.match(r"^(((\/| )*)команды)", tmsg.text):
-            self.tAPI.send("Список фраз:\n\"Example\" или \"Пример\" - пример команды."
-                           , tmsg.chat_id, tmsg.id)
-            return 0
-        tmsg.text_replace(r"^(((\/| )*)(example|пример))", Example.COMMAND, self.re.sub)
-        return 1
-
-    def quit(self, pers_id, chat_id, additional_info = '', msg_id = 0):
-        pass
-
-#TODO: Rename, channge the command and the hel info.
+#TODO: Rename, change the command and the help info.
 class Example(BaseWorker):
     COMMAND = "/example"
-    HELP = COMMAND + " - пример комнды\n\n"
+    HELP = COMMAND + " - an command example\n\n"
 
     waitlist = dict()
 
@@ -132,8 +106,6 @@ class Info(BaseWorker):
 
     def run(self, tmsg):
         HELP = ""
-            # "Включен режим презентации, Вы можете получить слова из банка." if self.tAPI.db_shell.TEST_WORDS else ""
-            # "Storage is " + ("on" if self.tAPI.DB_IS_ENABLED else "off") + "!\n\n"
         for worker in WorkersList.workers:
             HELP += worker[1].HELP
         HELP = HELP[:-2]
